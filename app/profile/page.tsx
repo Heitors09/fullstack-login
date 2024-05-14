@@ -3,16 +3,12 @@
 import React from "react";
 
 import { useQuery } from "@tanstack/react-query";
+import { getProfileInfo } from "@/queries/getProfileInfo";
 
 const ProfilePage = () => {
   //realizar GET in render em um client componente usando tanstack ao invés de useEffect
   const { data: infos, isLoading } = useQuery({
-    queryFn: async () => {
-      const response = await fetch("/api/users/profile");
-      const data = await response.json();
-
-      return data;
-    },
+    queryFn: getProfileInfo,
     queryKey: ["Profile Infos"],
   });
 
